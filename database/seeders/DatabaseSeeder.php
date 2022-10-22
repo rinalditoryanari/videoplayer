@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             'email' => "admin@admin.com",
             'email_verified_at' => date('Y-m-d H:i:s', time()),
             'password' => Hash::make('12345678'),
+            'def_password' => '12345678',
         ]);
     }
 }
