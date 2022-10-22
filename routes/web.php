@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,8 +13,37 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::redirect('/', '/dashboard');
 
-Route::redirect('/', '/dashboard-general-dashboard');
+Route::get('/login', function () {
+    return view('page.login');
+})->name('login');
+
+Route::post('actionlogin', [LoginController::class,'actionlogin'])->name('actionlogin');
+
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('actionlogout', [LoginController::class,'actionlogout'])->name('actionlogout');
+
+    Route::get('admin/dashboard', function () {
+        return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
+    });
+});
+
+Route::middleware(['auth', 'user'])->group(function () {
+
+    Route::get('actionlogout', [LoginController::class,'actionlogout'])->name('actionlogout');
+
+    Route::get('dashboard', function () {
+        return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
+    });
+});
+
+/*
+THIS IS TEMPLATE
+
+*/
+// Route::redirect('/', '/dashboard-general-dashboard');
 
 // Dashboard
 Route::get('/dashboard-general-dashboard', function () {
