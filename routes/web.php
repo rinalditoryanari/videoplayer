@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,15 +15,22 @@ use Illuminate\Support\Facades\Route;
 */
 Route::redirect('/', '/dashboard');
 
+Route::get('/register', function () {
+    return view('page.register');
+})->name('register');
+
+Route::post('/actionregister', [AccountController::class,'actionregister'])->name('actionregister');
+
+
 Route::get('/login', function () {
     return view('page.login');
 })->name('login');
 
-Route::post('actionlogin', [LoginController::class,'actionlogin'])->name('actionlogin');
+Route::post('actionlogin', [AccountController::class,'actionlogin'])->name('actionlogin');
 
 Route::middleware(['auth', 'admin'])->group(function () {
 
-    Route::get('actionlogout', [LoginController::class,'actionlogout'])->name('actionlogout');
+    Route::get('actionlogout', [AccountController::class,'actionlogout'])->name('actionlogout');
 
     Route::get('admin/dashboard', function () {
         return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
@@ -32,7 +39,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::middleware(['auth', 'user'])->group(function () {
 
-    Route::get('actionlogout', [LoginController::class,'actionlogout'])->name('actionlogout');
+    Route::get('actionlogout', [AccountController::class,'actionlogout'])->name('actionlogout');
 
     Route::get('dashboard', function () {
         return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);

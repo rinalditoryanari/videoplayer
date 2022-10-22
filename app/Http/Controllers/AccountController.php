@@ -5,13 +5,38 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class LoginController extends Controller
+class AccountController extends Controller
 {
-    public function login()
+    public function actionregister(Request $request)
     {
-        dd('kok disini');
+
+        $this->validate(request(), 
+            [
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|same:password-confirm',
+                'password-confirm' => 'required',
+            ],
+            [ 
+                'email.unique' => 'Email telah terdaftar ',
+                'password.same' => 'Password berbeda dengan Confirm Password',
+            ]
+        );
+
+        $data = [
+            'name' => request('name'),
+            'role' => "User",
+            'email' => request('email'),
+            'password' => Hash::make(request('password')),
+            'email_verified_at' => date('Y-m-d H:i:s', time()),
+        ];
+        
+        $user = User::insert($data);
+        return redirect('/');
     }
+
     public function actionlogin(Request $request)
     {
         $data = [
