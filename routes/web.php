@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,17 +41,25 @@ Route::middleware(['auth', 'admin'])->group(function () {
         return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
     });
 
-    Route::get('admin/tambah-akun', function () {
-        return view('page.admin-tambahakun', ['type_menu' => 'akun']);
-    });
-
+    //Data Akun
     Route::get('admin/dataadmin', [AccountController::class, 'getAdmin'])->name('getAdmin');
     Route::get('admin/datauser', [AccountController::class, 'getUser'])->name('getUser');
 
+    Route::get('admin/tambah-akun', function () {
+        return view('page.admin-tambahakun', ['type_menu' => 'akun']);
+    });
     Route::post('admin/newuser', [AccountController::class,'newUser'])->name('newUser');
 
     Route::get('admin/edituser/{id}', [AccountController::class, 'getEdit'])->name('getEdit');
     Route::post('admin/edituser/{id}', [AccountController::class, 'editUser'])->name('editUser');
+
+    //Video
+    Route::get('admin/tambah-video', function () {
+        return view('page.admin-tambahvideo', ['type_menu' => 'video']);
+    });
+    Route::post('admin/newvideo', [VideoController::class,'newVideo'])->name('newVideo');
+
+    Route::get('admin/datavideo', [VideoController::class, 'getVideo'])->name('getVideo');
 
 });
 
