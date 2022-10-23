@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
         name="viewport">
-    <title>@yield('title') &mdash; Stisla</title>
+    <title>@yield('title')</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet"
@@ -48,7 +48,15 @@
             @include('components.header')
 
             <!-- Sidebar -->
-            @include('components.sidebar')
+            @if(session()->get('role') == "Admin")
+            
+                @include('components.admin-sidebar')
+
+            @else
+    
+                @include('components.user-sidebar')
+
+            @endif
 
             <!-- Content -->
             @yield('main')
