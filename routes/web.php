@@ -47,6 +47,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('admin/dataadmin', [AccountController::class, 'getAdmin'])->name('getAdmin');
 
     Route::get('admin/datauser', [AccountController::class, 'getUser'])->name('getUser');
+
+    Route::post('admin/newuser', [AccountController::class,'newUser'])->name('newUser');
+
 });
 
 
