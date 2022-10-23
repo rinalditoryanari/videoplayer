@@ -9,61 +9,27 @@ use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
-    public function actionregister(Request $request)
+    public function getAdmin()
     {
-
-        $this->validate(request(), 
-            [
-                'name' => 'required',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|same:password-confirm',
-                'password-confirm' => 'required',
-            ],
-            [ 
-                'email.unique' => 'Email telah terdaftar ',
-                'password.same' => 'Password berbeda dengan Confirm Password',
-            ]
-        );
-
-        $data = [
-            'name' => request('name'),
-            'role' => "User",
-            'email' => request('email'),
-            'password' => Hash::make(request('password')),
-            'email_verified_at' => date('Y-m-d H:i:s', time()),
-        ];
-        
-        $user = User::insert($data);
-        return redirect('/');
+        $user =  User::query()
+            ->where('role', 'Admin')
+            ->paginate(10);
+     
+        return view('page.admin-dataadmin', [
+            'type_menu' => 'akun',
+            'users' => $user,
+        ]);
     }
 
-    public function actionlogin(Request $request)
+    public function getUser()
     {
-        $data = [
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-        ];
-
-        if (Auth::Attempt($data)) {
-            $email = $request->input('email');
-            $user = User::where('email', $email)->first();
-            session()->put('name',$user->name);
-            session()->put('role',$user->role);
-            if($user->role =="Admin"){
-                return redirect('admin/dashboard');    
-            } elseif ($user->role == "User") {
-                return redirect('dashboard');    
-            }
-        }else{
-            session()->flash('error', 'Email atau Password Salah');
-            return redirect()->back();
-        }
-    }
-    
-    public function actionlogout()
-    {
-        Auth::logout();
-        session()->flush();
-        return redirect('/login');
+        $user =  User::query()
+            ->where('role', 'User')
+            ->paginate(10);
+     
+        return view('page.admin-datauser', [
+            'type_menu' => 'akun',
+            'users' => $user,
+        ]);
     }
 }

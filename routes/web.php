@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,27 +20,40 @@ Route::get('/register', function () {
     return view('page.register');
 })->name('register');
 
-Route::post('/actionregister', [AccountController::class,'actionregister'])->name('actionregister');
+Route::post('/actionregister', [AuthController::class,'actionregister'])->name('actionregister');
 
 
 Route::get('/login', function () {
     return view('page.login');
 })->name('login');
 
-Route::post('actionlogin', [AccountController::class,'actionlogin'])->name('actionlogin');
+Route::post('actionlogin', [AuthController::class,'actionlogin'])->name('actionlogin');
 
+
+
+//UNTUK ADMIN
 Route::middleware(['auth', 'admin'])->group(function () {
 
-    Route::get('actionlogout', [AccountController::class,'actionlogout'])->name('actionlogout');
+    Route::get('actionlogout', [AuthController::class,'actionlogout'])->name('actionlogout');
 
     Route::get('admin/dashboard', function () {
         return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
     });
+
+    Route::get('admin/tambah-akun', function () {
+        return view('page.admin-tambahakun', ['type_menu' => 'akun']);
+    });
+
+    Route::get('admin/dataadmin', [AccountController::class, 'getAdmin'])->name('getAdmin');
+
+    Route::get('admin/datauser', [AccountController::class, 'getUser'])->name('getUser');
 });
 
+
+// UNTUK USER
 Route::middleware(['auth', 'user'])->group(function () {
 
-    Route::get('actionlogout', [AccountController::class,'actionlogout'])->name('actionlogout');
+    Route::get('actionlogout', [AuthController::class,'actionlogout'])->name('actionlogout');
 
     Route::get('dashboard', function () {
         return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
