@@ -81,6 +81,10 @@
                                             <td>{{$data['role']}}</td>
                                             <td>{{$data['email']}}</td>
                                             <td>{{$data['def_password']}}</td>
+                                            <td>
+                                                <button class="btn btn-icon btn-warning m-1" id="btnTolak" onclick="tolak_btn()"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-icon btn-danger m-1" id="deleteBtn" url="{{route('deleteUser')}}" ><i class="fas fa-trash"></i></button>
+                                            </td>
                                         </tr>
                                         @endforeach
                                         </tbody>
@@ -115,6 +119,7 @@
 
     <!-- Page Specific JS File -->
     <script src="../../js/table.js"></script>
+    <script src="../../js/akun.js"></script>
     <script src="{{ asset('js/page/modules-sweetalert.js') }}"></script>
 @endpush
 
