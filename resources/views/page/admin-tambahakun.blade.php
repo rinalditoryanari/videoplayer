@@ -38,6 +38,19 @@
                                     <h4>Input Text</h4>
                                 </div>
                                 <div class="card-body">
+                                    @if ($errors->any())
+                                        @foreach ($errors->all() as $error)
+                                        <div class="alert alert-danger alert-dismissible show fade">
+                                            <div class="alert-body">
+                                                <button class="close"
+                                                    data-dismiss="alert">
+                                                    <span>&times;</span>
+                                                </button>
+                                                {{ $error }}
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    @endif
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-6">
