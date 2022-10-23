@@ -70,4 +70,12 @@ class AccountController extends Controller
         
 
     }
+
+    public function delete()
+    {
+        $user = User::query()->where('email', request('email'))->delete();
+        return response()->json([
+            'data'=>$user,
+        ]);
+    }
 }

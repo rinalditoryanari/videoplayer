@@ -1,5 +1,9 @@
 $("#table").dataTable({
-    "columnDefs": [
-      { "sortable": false, "targets": [2,3] }
-    ]
+    scrollX: true,
+    autoWidth: false,
+    paging: false,
+    info: false,
+    searching:false,
+    responsive:true,
+    ordering: false,
   });

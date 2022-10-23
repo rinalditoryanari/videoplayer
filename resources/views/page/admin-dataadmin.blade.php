@@ -76,11 +76,15 @@
                                         <tbody>
                                         @foreach($users as $user => $data)
                                         <tr>
-                                            <td>{{ $user + $users->firstItem()}}</td>                                              
-                                            <td>{{$data['name']}}</td>
-                                            <td>{{$data['role']}}</td>
-                                            <td>{{$data['email']}}</td>
-                                            <td>{{$data['def_password']}}</td>
+                                            <td class="align-middle">{{ $user + $users->firstItem()}}</td>                                              
+                                            <td class="align-middle">{{$data['name']}}</td>
+                                            <td class="align-middle">{{$data['role']}}</td>
+                                            <td class="align-middle">{{$data['email']}}</td>
+                                            <td class="align-middle">{{$data['def_password']}}</td>
+                                            <td>
+                                                <button class="btn btn-icon btn-warning m-1" id="btnTolak" onclick="tolak_btn()"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-icon btn-danger m-1" id="deleteBtn" url="{{route('deleteUser')}}" ><i class="fas fa-trash"></i></button>
+                                            </td>
                                         </tr>
                                         @endforeach
                                         </tbody>
@@ -115,6 +119,7 @@
 
     <!-- Page Specific JS File -->
     <script src="../../js/table.js"></script>
+    <script src="../../js/akun.js"></script>
     <script src="{{ asset('js/page/modules-sweetalert.js') }}"></script>
 @endpush
 
