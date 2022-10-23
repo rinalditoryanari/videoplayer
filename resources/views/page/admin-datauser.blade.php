@@ -31,21 +31,6 @@
                         <div class="card">
                             <div class="card-header my-2">
                                 <h4>Tabel Preview</h4>      
-                                <div class="card-header-form">
-                                    <form  action="" method="get">
-                                        <div class="input-group">
-                                            <select class="btn custom-select" name="kolom" id="periode">
-                                                <option selected hidden>Pilih Kolom</option>
-                                                
-                                            </select>
-                                            &nbsp; &nbsp;
-                                            <input type="text" class="form-control" name="search" placeholder="Search" value="">
-                                            <div class="input-group-btn">
-                                                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                            </div>       
-                                        </div>
-                                    </form>
-                                </div>
                             </div>
                             <div class="card-body">
                                 @if(session()->has('error1'))
