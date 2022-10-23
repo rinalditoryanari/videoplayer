@@ -67,8 +67,6 @@ class AccountController extends Controller
             session()->flash('error', $error);
             return redirect()->back();
         }
-        
-
     }
 
     public function delete()
@@ -77,5 +75,47 @@ class AccountController extends Controller
         return response()->json([
             'data'=>$user,
         ]);
+    }
+
+    public function getEdit($id)
+    {
+        $user = User::find($id);
+        // dd($user);
+ 
+        return view('page.admin-editakun', [
+            'type_menu' => '',
+            'users' => $user,
+        ]);
+    }
+
+    public function editUser($id)
+    {
+        $this->validate(request(), 
+            [
+                'name' => 'required',
+                'email' => 'required|email',
+                'password' => 'required',
+            ],
+        );
+
+        try {
+            $user = User::find($id);
+            $user->name = request('name');
+            $user->role = request('role');
+            $user->email = request('email');
+            $user->password = Hash::make(request('password'));
+            $user->def_password = request('password');
+            $user->updated_at = date('Y-m-d H:i:s', time());
+            
+            $user->save();
+
+            if(request('role')=="Admin"){
+                return redirect()->route('getAdmin');
+            } else {
+                return redirect()->route('getUser');
+            }
+        } catch (Exception $error) {
+            return redirect()->to('back')->withErrors(['message1'=>'this is first message']);
+        }
     }
 }

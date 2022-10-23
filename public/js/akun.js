@@ -36,3 +36,8 @@ $("#table").on('click', '#deleteBtn', function() {
           alert(error)
         });
 })
+
+$("#table").on('click', '#editBtn', function() {
+    var url = $(this).attr('url')
+    location.replace(url);
+})
