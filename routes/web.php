@@ -63,6 +63,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('admin/play/{id}', [VideoController::class, 'playVideo'])->name('playVideo');
 
+    Route::get('admin/deleteVideo/{id}', [VideoController::class, 'deleteVideo'])->name('deleteVideo');
+
 });
 
 

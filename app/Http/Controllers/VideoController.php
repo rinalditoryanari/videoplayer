@@ -75,4 +75,15 @@ class VideoController extends Controller
             'video' => $video,
         ]);
     }
+
+    public function deleteVideo($id)
+    {
+        $video = Video::find($id);
+
+        $delVid = Storage::disk('public')->delete($video->link_video);
+        $delImg = Storage::disk('public')->delete($video->link_thumbnail);
+
+        $data_delete = $video->delete();
+        dd([$data_delete, $delImg, $delVid]);
+    }
 }

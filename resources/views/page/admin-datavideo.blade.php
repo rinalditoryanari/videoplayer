@@ -85,7 +85,9 @@
                                                     <button class="btn btn-icon btn-success m-1" id="editBtn" ><i class="fas fa-play"></i></button>
                                                 </a>
                                                 <button class="btn btn-icon btn-warning m-1" id="editBtn" ><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-icon btn-danger m-1" id="deleteBtn" ><i class="fas fa-trash"></i></button>
+                                                <a href="{{route('deleteVideo',['id' => $data['id']])}}">
+                                                    <button class="btn btn-icon btn-danger m-1" id="deleteBtn" ><i class="fas fa-trash"></i></button>    
+                                                </a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -121,7 +123,6 @@
 
     <!-- Page Specific JS File -->
     <script src="../../js/table.js"></script>
-    <script src="../../js/akun.js"></script>
     <script src="{{ asset('js/page/modules-sweetalert.js') }}"></script>
 @endpush
 
