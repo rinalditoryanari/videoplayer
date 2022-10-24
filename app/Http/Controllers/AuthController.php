@@ -32,6 +32,8 @@ class AuthController extends Controller
             'password' => Hash::make(request('password')),
             'def_password' => request('password'),
             'email_verified_at' => date('Y-m-d H:i:s', time()),
+            'created_at' => date('Y-m-d H:i:s', time()),
+            'updated_at' => date('Y-m-d H:i:s', time()),
         ];
         
         $user = User::insert($data);
