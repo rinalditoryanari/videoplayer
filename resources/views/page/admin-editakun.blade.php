@@ -28,9 +28,6 @@
                     <div class="breadcrumb-item">Edit Akun</div>
                 </div>
             </div>
-            <pre>
-                {{var_export($users)}}
-            </pre>
             <div class="section-body">
                 <div class="row">
                     <div class="col-12">
