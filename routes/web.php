@@ -37,9 +37,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('actionlogout', [AuthController::class,'actionlogout'])->name('actionlogout');
 
-    Route::get('admin/dashboard', function () {
-        return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
-    });
+    Route::get('admin/dashboard', [VideoController::class, 'getAll'])->name('getAll');
 
     //Data Akun
     Route::get('admin/dataadmin', [AccountController::class, 'getAdmin'])->name('getAdmin');
