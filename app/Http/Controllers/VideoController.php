@@ -86,4 +86,14 @@ class VideoController extends Controller
         $data_delete = $video->delete();
         return redirect()->back();
     }
+
+    public function getVideos()
+    {
+        $video = Video::all();
+
+        return view('page.dashboard-user', [
+            'type_menu' => 'dashboard',
+            'videos' => $video,
+        ]);
+    }
 }

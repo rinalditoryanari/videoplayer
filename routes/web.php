@@ -61,12 +61,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('admin/datavideo', [VideoController::class, 'getVideo'])->name('getVideo');
 
-    Route::get('admin/play/{id}', [VideoController::class, 'playVideo'])->name('playVideo');
+    Route::get('play/{id}', [VideoController::class, 'playVideo'])->name('playVideo');
 
     Route::get('admin/deleteVideo/{id}', [VideoController::class, 'deleteVideo'])->name('deleteVideo');
 
 });
-
 
 // UNTUK USER
 Route::middleware(['auth', 'user'])->group(function () {
@@ -74,8 +73,13 @@ Route::middleware(['auth', 'user'])->group(function () {
     Route::get('actionlogout', [AuthController::class,'actionlogout'])->name('actionlogout');
 
     Route::get('dashboard', function () {
-        return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
+        return view('page.dashboard-user', ['type_menu' => 'dashboard']);
     });
+
+    Route::get('dashboard', [VideoController::class, 'getVideos'])->name('getVideos');
+
+    Route::get('play/{id}', [VideoController::class, 'playVideo'])->name('playVideo');
+
 });
 
 /*
