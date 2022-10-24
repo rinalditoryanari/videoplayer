@@ -47,6 +47,14 @@
                     <i class="fas fa-fire"></i><span>Tambah Video</span>
                 </a>
             </li>
+            <li class='{{ Request::is("admin/datavideo") ? 'active' : '' }}'>
+                <a class="nav-link"
+                    href="{{ url('admin/datavideo') }}">
+                    <i class="fas fa-fire"></i><span>Daftar Video</span>
+                </a>
+            </li>
+
+
             <li class="nav-item dropdown {{ $type_menu === 'dataakun' ? 'active' : '' }}">
                 <a href="#"
                     class="nav-link has-dropdown"

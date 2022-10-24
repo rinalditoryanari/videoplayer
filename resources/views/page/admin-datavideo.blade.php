@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Data Admin')
+@section('title', 'Data Video')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -20,10 +20,10 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Data Admin</h1>
+                <h1>Data Video</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="">Dashboard</a></div>
-                    <div class="breadcrumb-item">Data Admin</div>
+                    <div class="breadcrumb-item">Data Video</div>
                 </div>
             </div>
                 <div class="row">
@@ -62,14 +62,28 @@
                                         @foreach($videos as $video => $data)
                                         <tr>
                                             <td class="align-middle">{{ $video + $videos->firstItem()}}</td>                                              
-                                            <td class="align-middle">{{$data['title']}}</td>
-                                            <td class="align-middle">{{$data['desc']}}</td>
+                                            <td class="align-middle">
+                                                <a href="{{route('playVideo',['id' => $data['id']])}}">{{$data['title']}}</a>
+                                            </td>
+                                            <td class="align-middle">{{$data['description']}}</td>
                                             <td class="align-middle">{{$data['category']}}</td>
                                             <td class="align-middle">
-                                                <img class="m-2" src="{{url('storage/'.$data['link_thumbnail'])}}" style="height: 10em;">
-                                                
+                                                <div class="chocolat-parent">
+                                                    <a href="{{url('storage/'.$data['link_thumbnail'])}}"
+                                                        class="chocolat-image"
+                                                        title="{{$data['title']}}">
+                                                        <div>
+                                                            <img alt="image"
+                                                                src="{{url('storage/'.$data['link_thumbnail'])}}"
+                                                                class="img-fluid" style="height: 10em;">
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             </td>
                                             <td>
+                                                <a href="{{route('playVideo',['id' => $data['id']])}}">
+                                                    <button class="btn btn-icon btn-success m-1" id="editBtn" ><i class="fas fa-play"></i></button>
+                                                </a>
                                                 <button class="btn btn-icon btn-warning m-1" id="editBtn" ><i class="fas fa-edit"></i></button>
                                                 <button class="btn btn-icon btn-danger m-1" id="deleteBtn" ><i class="fas fa-trash"></i></button>
                                             </td>

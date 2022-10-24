@@ -61,6 +61,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('admin/datavideo', [VideoController::class, 'getVideo'])->name('getVideo');
 
+    Route::get('admin/play/{id}', [VideoController::class, 'playVideo'])->name('playVideo');
+
 });
 
 

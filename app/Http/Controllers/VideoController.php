@@ -65,4 +65,14 @@ class VideoController extends Controller
             'videos' => $video,
         ]);
     }
+
+    public function playVideo($id)
+    {
+        $video = Video::find($id);
+
+        return view('page.admin-videoplayer', [
+            'type_menu' => '',
+            'video' => $video,
+        ]);
+    }
 }
