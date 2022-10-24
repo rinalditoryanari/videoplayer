@@ -84,6 +84,6 @@ class VideoController extends Controller
         $delImg = Storage::disk('public')->delete($video->link_thumbnail);
 
         $data_delete = $video->delete();
-        dd([$data_delete, $delImg, $delVid]);
+        return redirect()->back();
     }
 }
