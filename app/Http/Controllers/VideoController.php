@@ -57,6 +57,12 @@ class VideoController extends Controller
 
     public function getVideo()
     {
-        dd('hai');
+        $video =  Video::query()
+        ->paginate(10);
+ 
+        return view('page.admin-datavideo', [
+            'type_menu' => 'akun',
+            'videos' => $video,
+        ]);
     }
 }

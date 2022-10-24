@@ -51,24 +51,27 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">Nama</th>
-                                                <th scope="col">Role</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Password</th>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Desc</th>
+                                                <th scope="col">Category</th>
+                                                <th scope="col">Video</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($users as $user => $data)
+                                        @foreach($videos as $video => $data)
                                         <tr>
-                                            <td class="align-middle">{{ $user + $users->firstItem()}}</td>                                              
-                                            <td class="align-middle">{{$data['name']}}</td>
-                                            <td class="align-middle">{{$data['role']}}</td>
-                                            <td class="align-middle">{{$data['email']}}</td>
-                                            <td class="align-middle">{{$data['def_password']}}</td>
+                                            <td class="align-middle">{{ $video + $videos->firstItem()}}</td>                                              
+                                            <td class="align-middle">{{$data['title']}}</td>
+                                            <td class="align-middle">{{$data['desc']}}</td>
+                                            <td class="align-middle">{{$data['category']}}</td>
+                                            <td class="align-middle">
+                                                <img class="m-2" src="{{url('storage/'.$data['link_thumbnail'])}}" style="height: 10em;">
+                                                
+                                            </td>
                                             <td>
-                                                <button class="btn btn-icon btn-warning m-1" id="editBtn" url="{{route('getEdit',['id' => $data['id']])}}" onclick="tolak_btn()"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-icon btn-danger m-1" id="deleteBtn" url="{{route('deleteUser')}}" ><i class="fas fa-trash"></i></button>
+                                                <button class="btn btn-icon btn-warning m-1" id="editBtn" ><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-icon btn-danger m-1" id="deleteBtn" ><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -78,10 +81,10 @@
                             </div>
                             <div class="card-footer row">
                                 <div class="col-sm-12 col-md-5">
-                                    <p> {{ $users->firstItem() }} of {{ $users->lastItem() }} from {{ $users->total() }} contents</p>
+                                    <p> {{ $videos->firstItem() }} of {{ $videos->lastItem() }} from {{ $videos->total() }} contents</p>
                                 </div>
                                 <div class="col-sm-12 col-md-5 pagination">
-                                {{ $users->links("pagination::bootstrap-4")}}
+                                {{ $videos->links("pagination::bootstrap-4")}}
                                 </div>
                             </div> 
                         </div>
