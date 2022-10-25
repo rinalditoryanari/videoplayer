@@ -11,7 +11,7 @@
             <li class='{{ Request::is("admin/dashboard") ? 'active' : '' }}'>
                 <a class="nav-link"
                     href="{{ url('dashboard-general-dashboard') }}">
-                    <i class="fas fa-fire"></i><span>Dashboard</span>
+                    <i class="fa-solid fa-house"></i><span>Dashboard</span>
                 </a>
             </li>
 
@@ -20,13 +20,13 @@
             <li class='{{ Request::is("admin/tambah-akun") ? 'active' : '' }}'>
                 <a class="nav-link"
                     href="{{ url('admin/tambah-akun') }}">
-                    <i class="fas fa-fire"></i><span>Tambah Akun</span>
+                    <i class="fa-solid fa-user-plus"></i><span>Tambah Akun</span>
                 </a>
             </li>
             <li class="nav-item dropdown {{ $type_menu === 'dataakun' ? 'active' : '' }}">
                 <a href="#"
                     class="nav-link has-dropdown"
-                    data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Data Akun</span></a>
+                    data-toggle="dropdown"><i class="fas fa-users"></i><span>Data Akun</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/dataadnin') ? 'active' : '' }}">
                         <a class="nav-link"
@@ -44,15 +44,15 @@
             <li class='{{ Request::is("admin/tambah-video") ? 'active' : '' }}'>
                 <a class="nav-link"
                     href="{{ url('admin/tambah-video') }}">
-                    <i class="fas fa-fire"></i><span>Tambah Video</span>
+                    <i class="fas fa-cloud-upload"></i><span>Tambah Video</span>
                 </a>
             </li>
             <li class='{{ Request::is("admin/datavideo") ? 'active' : '' }}'>
                 <a class="nav-link"
                     href="{{ url('admin/datavideo') }}">
-                    <i class="fas fa-fire"></i><span>Daftar Video</span>
+                    <i class="fas fa-play-circle"></i><span>Daftar Video</span>
                 </a>
             </li>
-        </ul>
+        </ul>   
     </aside>
 </div>

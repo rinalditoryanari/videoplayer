@@ -10,7 +10,7 @@
             <li class="menu-header">Dashboard</li>
             <li class='{{ Request::is('dashboard') ? 'active' : '' }}'>
                 <a class="nav-link"
-                    href="{{ url('dashboard') }}"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                    href="{{ url('dashboard') }}"><i class="fas fa-home"></i><span>Dashboard</span></a>
             </li>
         </ul>
     </aside>
