@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use PhpParser\Node\Stmt\TryCatch;
+use Symfony\Component\Console\Input\Input;
 
 class VideoController extends Controller
 {
@@ -115,5 +116,54 @@ class VideoController extends Controller
             'admins' => $admin,
             'users' => $user,
         ]);
+    }
+
+    public function getEditVid($id)
+    {
+        $video = Video::find($id);
+
+        return view('page.admin-editvideo', [
+            'type_menu' => '',
+            'video' => $video,
+        ]);
+    }
+
+    public function editVid($id)
+    {
+        $this->validate(request(), 
+            [
+                'title' => 'required|max:255',
+                'image' => 'image',
+                'video' => 'file|mimetypes:video/mp4',
+            ],
+            [ 
+                'title.max' => 'Pastikan Title tidak melebihi 255 karakter ',
+                'image.image' => 'Pastikan thumbnail dalam format jpg, jpeg, png, bmp, gif, svg, atau webp',
+                'video.mimetypes' => 'Pastikan video dalam format mp4',
+            ]
+        );
+        try {
+            
+            $video = Video::find($id);
+            // $isvideo = Input::has('video');
+    
+            if (request()->has('video')) {
+                $delVid = Storage::disk('public')->delete($video->link_video);
+                $isvidUploaded = Storage::disk('public')->put($video->link_video, file_get_contents(request('video')));
+            }
+            if (request()->has('image')) {
+                $delVid = Storage::disk('public')->delete($video->link_thumbnail);
+                $isimgUploaded = Storage::disk('public')->put($video->link_thumbnail, file_get_contents(request('image')));
+            }
+            $video->title = request('title');
+            $video->category = request('category');
+            $video->description = request('desc');
+            $video->save();
+
+            return redirect()->route('getVideo');
+        } catch (Exception $error) {
+            session()->flash('error', $error);
+            return redirect()->back();
+        }
     }
 }

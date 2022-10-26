@@ -84,7 +84,9 @@
                                                 <a href="{{route('playVideo',['id' => $data['id']])}}">
                                                     <button class="btn btn-icon btn-success m-1" id="editBtn" ><i class="fas fa-play"></i></button>
                                                 </a>
-                                                <button class="btn btn-icon btn-warning m-1" id="editBtn" ><i class="fas fa-edit"></i></button>
+                                                <a href="{{route('getEditVid',['id' => $data['id']])}}">
+                                                    <button class="btn btn-icon btn-warning m-1" id="editBtn" ><i class="fas fa-edit"></i></button>
+                                                </a>
                                                 <a href="{{route('deleteVideo',['id' => $data['id']])}}">
                                                     <button class="btn btn-icon btn-danger m-1" id="deleteBtn" ><i class="fas fa-trash"></i></button>    
                                                 </a>
