@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Vudeo')
+@section('title', 'Tambah Video')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -76,8 +76,13 @@
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Video Upload</label>
                                         <div class="col-sm-12 col-md-7">
                                             <div class="custom-file">
-                                                <input type="file" name="video" class="custom-file-input"/>
-                                                <label class="custom-file-label" for="video">Choose file</label>
+                                                <input type="file" name="video" class="custom-file-input" onchange="upVideo(this)" accept="video/*"/>
+                                                <label id="label-video" class="custom-file-label" for="video">Choose File..</label>
+                                            </div>
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <video id="preview-video" class="my-2" src=""
+                                                style="max-width: -webkit-fill-available; max-height: 16em; background-color: black;" controls>
+                                            </video>
                                             </div>
                                         </div>
                                     </div>
@@ -85,13 +90,13 @@
                                     <div class="form-group row mb-4">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Thumbnail</label>
                                         <div class="col-sm-12 col-md-7">
-                                            <div id="image-preview"
-                                                class="image-preview">
-                                                <label for="image-upload"
-                                                    id="image-label">Choose File</label>
-                                                <input type="file"
-                                                    name="image"
-                                                    id="image-upload" required/>
+                                            <div class="custom-file">
+                                                <input type="file" name="image" class="custom-file-input" onchange="upImage(this)" accept="image/*"/>
+                                                <label id="label-image" class="custom-file-label" for="video">Choose File..</label>
+                                            </div>
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <img id="preview-image" class="my-2" src="" 
+                                                style="max-width: -webkit-fill-available; max-height: 16em; background-color: black;">
                                             </div>
                                         </div>
                                     </div>
@@ -120,5 +125,5 @@
     <script src="{{ asset('library/upload-preview/upload-preview.js') }}"></script>
 
     <!-- Page Specific JS File -->
-    <script src="{{ asset('js/page/features-post-create.js') }}"></script>
+    <script src="../../js/edit-video.js"></script>
 @endpush
