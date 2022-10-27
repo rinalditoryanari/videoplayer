@@ -33,11 +33,11 @@
             <div class="d-flex align-items-stretch flex-wrap">
                 <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
                     <div class="m-3 p-4">
-                        <img src="{{ asset('img/stisla-fill.svg') }}"
+                        <img src="{{ asset('img/products/product-1-50.png') }}"
                             alt="logo"
                             width="80"
                             class="shadow-light rounded-circle mb-5 mt-2">
-                        <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Stisla</span>
+                        <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Videoplayer</span>
                         </h4>
                         <p class="text-muted">Before you get started, you must login or register if you don't already
                             have an account.</p>
@@ -87,23 +87,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox"
-                                        name="remember"
-                                        class="custom-control-input"
-                                        tabindex="3"
-                                        id="remember-me">
-                                    <label class="custom-control-label"
-                                        for="remember-me">Remember Me</label>
-                                </div>
-                            </div>
-
                             <div class="form-group text-right">
-                                <a href="auth-forgot-password.html"
-                                    class="float-left mt-3">
-                                    Forgot Password?
-                                </a>
                                 <button type="submit"
                                     class="btn btn-primary btn-lg btn-icon icon-right"
                                     tabindex="4">
@@ -117,11 +101,11 @@
                         </form>
 
                         <div class="text-small mt-5 text-center">
-                            Copyright &copy; Your Company. Made with 💙 by Stisla
-                            <div class="mt-2">
-                                <a href="#">Privacy Policy</a>
-                                <div class="bullet"></div>
-                                <a href="#">Terms of Service</a>
+                            Copyright &copy; 2020. Made with 💙 by Rinaldito
+                            <div class="mt-2 row justify-content-center">
+                                <p href="#">PNJ</p>
+                                <p class="mx-2">|</p>
+                                <p href="#">CCIT-7</p>
                             </div>
                         </div>
                     </div>
@@ -131,8 +115,8 @@
                     <div class="absolute-bottom-left index-2">
                         <div class="text-light p-5 pb-2">
                             <div class="mb-5 pb-3">
-                                <h1 class="display-4 font-weight-bold mb-2">Good Morning</h1>
-                                <h5 class="font-weight-normal text-muted-transparent">Bali, Indonesia</h5>
+                                <h1 class="display-4 font-weight-bold mb-2">Welcome</h1>
+                                <h5 class="font-weight-normal text-muted-transparent">Let's play some videos!!!</h5>
                             </div>
                             Photo by <a class="text-light bb"
                                 target="_blank"
