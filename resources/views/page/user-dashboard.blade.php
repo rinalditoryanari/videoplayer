@@ -14,8 +14,8 @@
             </div>
 
             <div class="section-body">
-                @foreach($videos as $video)
                 <div class="row">
+                @foreach($videos as $video)
                     <div class="col-12 col-md-4 col-lg-4">
                         <article class="article article-style-c">
                             <div class="article-header">
@@ -34,8 +34,8 @@
                             </div>
                         </article>
                     </div>
-                </div>
                 @endforeach
+                </div>
             </div>
         </section>
     </div>
