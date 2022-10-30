@@ -62,10 +62,12 @@
                                         @foreach($users as $user => $data)
                                         <tr>
                                             <td>{{ $user + $users->firstItem()}}</td>                                              
-                                            <td>{{$data['name']}}</td>
-                                            <td>{{$data['role']}}</td>
-                                            <td>{{$data['email']}}</td>
-                                            <td>{{$data['def_password']}}</td>
+                                            <td>{{$data->name}}</td>
+                                            <td>
+                                                <span class="badge badge-info">{{$data->role}}</span>
+                                            </td>
+                                            <td>{{$data->email}}</td>
+                                            <td>{{$data->def_password}}</td>
                                             <td>
                                                 <button class="btn btn-icon btn-warning m-1" id="editBtn" url="{{route('getEdit',['id' => $data['id']])}}" onclick="tolak_btn()"><i class="fas fa-edit"></i></button>
                                                 <button class="btn btn-icon btn-danger m-1" id="deleteBtn" url="{{route('deleteUser')}}" ><i class="fas fa-trash"></i></button>

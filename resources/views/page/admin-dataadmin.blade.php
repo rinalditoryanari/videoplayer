@@ -52,7 +52,7 @@
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Nama</th>
-                                                <th scope="col">Role</th>
+                                                <th scope="col"></th>
                                                 <th scope="col">Email</th>
                                                 <th scope="col">Password</th>
                                                 <th scope="col">Action</th>
@@ -62,13 +62,22 @@
                                         @foreach($users as $user => $data)
                                         <tr>
                                             <td class="align-middle">{{ $user + $users->firstItem()}}</td>                                              
-                                            <td class="align-middle">{{$data['name']}}</td>
-                                            <td class="align-middle">{{$data['role']}}</td>
-                                            <td class="align-middle">{{$data['email']}}</td>
-                                            <td class="align-middle">{{$data['def_password']}}</td>
+                                            <td class="align-middle">
+                                                {{$data->name}}
+                                                @if($data->id == session('id'))
+                                                    <span class="ml-2 badge badge-primary">Anda</span>
+                                                @endif
+                                            </td>
+                                            <td class="align-middle">
+                                                <span class="badge badge-info">{{$data->role}}</span>
+                                            </td>
+                                            <td class="align-middle">{{$data->email}}</td>
+                                            <td class="align-middle">{{$data->def_password}}</td>
                                             <td>
                                                 <button class="btn btn-icon btn-warning m-1" id="editBtn" url="{{route('getEdit',['id' => $data['id']])}}" onclick="tolak_btn()"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-icon btn-danger m-1" id="deleteBtn" url="{{route('deleteUser')}}" ><i class="fas fa-trash"></i></button>
+                                                @if($data->id != session('id'))
+                                                    <button class="btn btn-icon btn-danger m-1" id="deleteBtn" url="{{route('deleteUser')}}" ><i class="fas fa-trash"></i></button>
+                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach
