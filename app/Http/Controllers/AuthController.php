@@ -52,6 +52,7 @@ class AuthController extends Controller
             $user = User::where('email', $email)->first();
             session()->put('name',$user->name);
             session()->put('role',$user->role);
+            session()->put('id',$user->id);
             if($user->role =="Admin"){
                 return redirect('admin/dashboard');    
             } elseif ($user->role == "User") {
