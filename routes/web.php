@@ -55,7 +55,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('admin/tambah-video', function () {
         return view('page.admin-tambahvideo', ['type_menu' => 'video']);
     });
-    Route::post('admin/newvideo', [VideoController::class,'newVideo'])->name('newVideo');
 
     Route::get('admin/datavideo', [VideoController::class, 'getVideo'])->name('getVideo');
 
@@ -70,17 +69,21 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('play/{id}', [VideoController::class, 'playVideo'])->name('playVideo');
     
+    Route::post('newvideo', [VideoController::class,'newVideo'])->name('newVideo');
+
 });
 // UNTUK USER
 Route::middleware(['auth', 'user'])->group(function () {
 
     Route::get('actionlogout', [AuthController::class,'actionlogout'])->name('actionlogout');
 
-    Route::get('dashboard', function () {
-        return view('page.dashboard-user', ['type_menu' => 'dashboard']);
-    });
-
     Route::get('dashboard', [VideoController::class, 'getVideos'])->name('getVideos');
+
+    Route::get('tambah-video', function () {
+        return view('page.admin-tambahvideo', ['type_menu' => 'video']);
+    })->name('tambahVideo');
+
+    Route::get('your-video', [VideoController::class, 'userVideos'])->name('userVideos');
 
 });
 

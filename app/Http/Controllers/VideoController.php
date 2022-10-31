@@ -51,6 +51,11 @@ class VideoController extends Controller
 
             $user = Video::insert($data);
 
+            if (session('role') == 'Admin') {
+                return redirect()->route('getVideo');
+            } else {
+                return redirect()->route('getVideos');
+            }
             return redirect()->route('getVideo');
         } catch (Exception $error) {
             session()->flash('error', $error);
@@ -70,6 +75,21 @@ class VideoController extends Controller
             'videos' => $video,
         ]);
     }
+
+    public function userVideos()
+    {
+        $video =  Video::query()
+        ->where('user',session('id'))
+        ->join('users', 'users.id', 'videos.user')
+        ->select('videos.*', 'users.name')
+        ->paginate(10);
+
+        return view('page.admin-datavideo', [
+            'type_menu' => 'akun',
+            'videos' => $video,
+        ]);
+    }
+
 
     public function playVideo($id)
     {
