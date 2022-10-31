@@ -31,7 +31,17 @@
                                     <h2><a href="{{route('playVideo',['id' => $video['id']])}}">{{$video->title}}</a></h2>
                                 </div>
                                 {{$video->description}}
-                            </div>
+                                <div class="article-user">
+                                    <img alt="image"
+                                        src="{{ asset('img/avatar/avatar-1.png') }}">
+                                    <div class="article-user-details">
+                                        <div class="user-detail-name">
+                                            <a href="#">{{$video->name}}</a>
+                                        </div>
+                                        <div class="text-job">Uploaded By</div>
+                                    </div>
+                                </div>
+                            </div>                            
                         </article>
                     </div>
                 @endforeach

@@ -64,7 +64,7 @@ class VideoController extends Controller
         ->join('users', 'users.id', 'videos.user')
         ->select('videos.*', 'users.name')
         ->paginate(10);
-        
+
         return view('page.admin-datavideo', [
             'type_menu' => 'akun',
             'videos' => $video,
@@ -94,7 +94,10 @@ class VideoController extends Controller
 
     public function getVideos()
     {
-        $video = Video::all();
+        $video = Video::query()
+        ->join('users', 'users.id', 'videos.user')
+        ->select('videos.*', 'users.name')
+        ->get();
 
         return view('page.user-dashboard', [
             'type_menu' => 'dashboard',
