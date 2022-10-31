@@ -44,6 +44,7 @@ class VideoController extends Controller
                 'category' => request('category'),
                 'link_video' => $vidPath,
                 'link_thumbnail' => $imgPath,
+                'user'=>session('id'),
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time()),
             ];
@@ -60,8 +61,10 @@ class VideoController extends Controller
     public function getVideo()
     {
         $video =  Video::query()
+        ->join('users', 'users.id', 'videos.user')
+        ->select('videos.*', 'users.name')
         ->paginate(10);
- 
+        
         return view('page.admin-datavideo', [
             'type_menu' => 'akun',
             'videos' => $video,

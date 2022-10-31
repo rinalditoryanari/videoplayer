@@ -54,6 +54,7 @@
                                                 <th scope="col">Title</th>
                                                 <th scope="col">Desc</th>
                                                 <th scope="col">Category</th>
+                                                <th scope="col">User</th>
                                                 <th scope="col">Video</th>
                                                 <th scope="col">Action</th>
                                             </tr>
@@ -67,6 +68,12 @@
                                             </td>
                                             <td class="align-middle">{{$data['description']}}</td>
                                             <td class="align-middle">{{$data['category']}}</td>
+                                            <td class="align-middle">
+                                            {{$data['name']}}
+                                            @if($data->user == session('id'))
+                                                <span class="badge badge-primary ml-2">Anda</span>
+                                            @endif
+                                            </td>
                                             <td class="align-middle">
                                                 <div class="chocolat-parent">
                                                     <a href="{{url('storage/'.$data['link_thumbnail'])}}"
