@@ -89,7 +89,7 @@ Route::middleware(['auth', 'user'])->group(function () {
 
     Route::get('editvideo/{id}', [VideoController::class, 'usergetEditVid'])->name('usergetEditVid');
     
-    Route::post('editvideo/{id}', [VideoController::class, 'usereditVid'])->name('usereditVid');
+    Route::post('editvideo/{id}', [VideoController::class, 'editVid'])->name('usereditVid');
 
 });
 

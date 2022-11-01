@@ -166,8 +166,11 @@ class VideoController extends Controller
             $video->category = request('category');
             $video->description = request('desc');
             $video->save();
-
-            return redirect()->route('getVideo');
+            if(session('role') =="Admin"){
+                return redirect()->route('getVideo');
+            } elseif (session('role') == "User") {
+                return redirect()->route('getVideos');
+            }
         } catch (Exception $error) {
             session()->flash('error', $error);
             return redirect()->back();
@@ -204,4 +207,15 @@ class VideoController extends Controller
         $data_delete = $video->delete();
         return redirect()->back();
     }
+
+    public function usergetEditVid($id)
+    {
+        $video = Video::find($id);
+
+        return view('page.user-editvideo', [
+            'type_menu' => '',
+            'video' => $video,
+        ]);
+    }
+
 }
