@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AdminDashboard;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +38,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('actionlogout', [AuthController::class,'actionlogout'])->name('actionlogout');
 
-    Route::get('admin/dashboard', [VideoController::class, 'getAll'])->name('getAll');
+    Route::get('admin/dashboard', [AdminDashboard::class, 'getAll'])->name('getAll');
 
     //Data Akun
     Route::get('admin/dataadmin', [AccountController::class, 'getAdmin'])->name('getAdmin');
