@@ -20,9 +20,20 @@
     <div class="main-content">
         <section class="section">
             <div class="row pt-2">
+                @if(session()->has('error'))
+                <div class="alert alert-danger alert-dismissible show fade col-12">
+                    <div class="alert-body">
+                        <button class="close"
+                            data-dismiss="alert">
+                            <span>&times;</span>
+                        </button>
+                        {{session('error')}}
+                    </div>
+                </div>
+                @endif
                 <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 mb-3">
                     <div class="d-flex justtify-content-center align-items-center">
-                        <video class="m-auto" src="{{url('storage/'.$video->link_video)}}" style="max-width: -webkit-fill-available; max-height: -webkit-fill-available; background-color: black;" controls></video>
+                        <video class="m-auto" src="{{url('storage/'.$video ->link_video)}}" style="max-width: -webkit-fill-available; max-height: -webkit-fill-available; background-color: black;" controls></video>
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">

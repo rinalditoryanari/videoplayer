@@ -95,6 +95,10 @@ class VideoController extends Controller
     {
         $video = Video::find($id);
 
+        if (Storage::disk('public')->missing($video->link_video)) {
+            session()->flash('error', 'Video not found');
+        }
+
         return view('page.admin-videoplayer', [
             'type_menu' => '',
             'video' => $video,
