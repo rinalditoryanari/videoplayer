@@ -125,25 +125,6 @@ class VideoController extends Controller
         ]);
     }
 
-    public function getAll()
-    {
-        $video = Video::all();
-        $video = count($video);
-
-        $admin = User::query()->where('role', 'Admin')->get();
-        $admin = count($admin);
-
-        $user =  User::query()->where('role', 'User')->get();
-        $user =  count($user);
-
-        return view('page.admin-dashboard', [
-            'type_menu' => 'dashboard',
-            'videos' => $video,
-            'admins' => $admin,
-            'users' => $user,
-        ]);
-    }
-
     public function getEditVid($id)
     {
         $video = Video::find($id);
@@ -191,5 +172,36 @@ class VideoController extends Controller
             session()->flash('error', $error);
             return redirect()->back();
         }
+    }
+
+    //USER
+    public function getAll()
+    {
+        $video = Video::all();
+        $video = count($video);
+
+        $admin = User::query()->where('role', 'Admin')->get();
+        $admin = count($admin);
+
+        $user =  User::query()->where('role', 'User')->get();
+        $user =  count($user);
+
+        return view('page.admin-dashboard', [
+            'type_menu' => 'dashboard',
+            'videos' => $video,
+            'admins' => $admin,
+            'users' => $user,
+        ]);
+    }
+
+    public function userdeleteVideo($id)
+    {
+        $video = Video::find($id);
+
+        $delVid = Storage::disk('public')->delete($video->link_video);
+        $delImg = Storage::disk('public')->delete($video->link_thumbnail);
+
+        $data_delete = $video->delete();
+        return redirect()->back();
     }
 }

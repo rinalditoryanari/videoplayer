@@ -85,6 +85,12 @@ Route::middleware(['auth', 'user'])->group(function () {
 
     Route::get('your-video', [VideoController::class, 'userVideos'])->name('userVideos');
 
+    Route::get('deleteVideo/{id}', [VideoController::class, 'userdeleteVideo'])->name('userdeleteVideo');
+
+    Route::get('editvideo/{id}', [VideoController::class, 'usergetEditVid'])->name('usergetEditVid');
+    
+    Route::post('editvideo/{id}', [VideoController::class, 'usereditVid'])->name('usereditVid');
+
 });
 
 /*

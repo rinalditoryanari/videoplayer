@@ -33,12 +33,12 @@
                                 <h4>Tabel Preview</h4>
                             </div>
                             <div class="card-body">
-                                @if(session()->has('error1'))
+                                @if(session()->has('error'))
                                     <div class="alert alert-danger alert-has-icon alert-dismissible show fade">
                                         <div class="alert-icon"><i class="fas fa-exclamation"></i></div>
                                         <div class="alert-body">
                                             <div class="alert-title">Data Tidak Ditemukan</div>
-                                            {{session('error1')}}
+                                            {{session('error')}}
                                         </div>
                                         <button class="close" data-dismiss="alert">
                                             <i class="fas fa-times fa-lg"></i>
@@ -91,10 +91,10 @@
                                                 <a href="{{route('playVideo',['id' => $data['id']])}}">
                                                     <button class="btn btn-icon btn-success m-1" id="editBtn" ><i class="fas fa-play"></i></button>
                                                 </a>
-                                                <a href="{{route('getEditVid',['id' => $data['id']])}}">
+                                                <a href="{{route('usergetEditVid',['id' => $data['id']])}}">
                                                     <button class="btn btn-icon btn-warning m-1" id="editBtn" ><i class="fas fa-edit"></i></button>
                                                 </a>
-                                                <a href="{{route('deleteVideo',['id' => $data['id']])}}">
+                                                <a href="{{route('userdeleteVideo',['id' => $data['id']])}}">
                                                     <button class="btn btn-icon btn-danger m-1" id="deleteBtn" ><i class="fas fa-trash"></i></button>    
                                                 </a>
                                             </td>
