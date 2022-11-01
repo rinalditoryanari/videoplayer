@@ -84,7 +84,7 @@ class VideoController extends Controller
         ->select('videos.*', 'users.name')
         ->paginate(10);
 
-        return view('page.admin-datavideo', [
+        return view('page.user-datavideo', [
             'type_menu' => 'akun',
             'videos' => $video,
         ]);
